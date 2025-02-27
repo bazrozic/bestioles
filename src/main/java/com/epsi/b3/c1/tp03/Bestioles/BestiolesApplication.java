@@ -26,17 +26,29 @@ public class BestiolesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		System.out.println(speciesRepository.findFirstByCommonNameEquals("Chien"));
+//		System.out.println(speciesRepository.findFirstByCommonNameEquals("Chien"));
+//
+//		System.out.println(speciesRepository.findAllByLatinNameContainsIgnoreCase("canis"));
+//
+//		System.out.println(personRepository.findFirstByLastnameEqualsIgnoreCaseOrFirstnameEqualsIgnoreCase("LaMarque", "John"));
+//
+//		System.out.println(personRepository.findAllByAgeIsGreaterThanEqual(30));
+//
+//		System.out.println(animalRepository.findAllBySpecies_CommonName("Chien"));
+//
+//		System.out.println(animalRepository.findAllByColorIsIn(List.of("Noir", "Blanc")));
 
-		System.out.println(speciesRepository.findAllByLatinNameContainsIgnoreCase("canis"));
+		System.out.println(speciesRepository.findAllByQuery());
 
-		System.out.println(personRepository.findFirstByLastnameEqualsIgnoreCaseOrFirstnameEqualsIgnoreCase("LaMarque", "John"));
+		System.out.println(speciesRepository.findAllByCommonNameContains("Chien"));
 
-		System.out.println(personRepository.findAllByAgeIsGreaterThanEqual(30));
+		System.out.println(personRepository.findAllByAgeBetween(30, 40));
 
-		System.out.println(animalRepository.findAllBySpecies_CommonName("Chien"));
+		System.out.println(personRepository.findAllByAnimalName("Max"));
 
-		System.out.println(animalRepository.findAllByColorIsIn(List.of("Noir", "Blanc")));
+		System.out.println(animalRepository.countBySexe("M"));
+
+		System.out.println(animalRepository.existsByAnimalId(1));
 	}
 
 	@Autowired

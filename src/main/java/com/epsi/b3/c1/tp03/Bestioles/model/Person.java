@@ -2,6 +2,8 @@ package com.epsi.b3.c1.tp03.Bestioles.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Person {
 
@@ -38,6 +40,14 @@ public class Person {
                 ", active=" + active +
                 '}';
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "person_animals",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "animals_id")
+    )
+    private List<Animal> animals;
 
     public Integer getId() {
         return id;
