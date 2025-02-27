@@ -47,4 +47,5 @@ public class Species {
     public void setLatinName(String latinName) {
         this.latinName = latinName;
     }
+
 }

@@ -9,13 +9,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
 public class BestiolesApplication implements CommandLineRunner {
 
-	private PersonRepository personRepository;
-	private AnimalRepository animalRepository;
-	private RoleRepository roleRepository;
-	private SpeciesRepository speciesRepository;
+	private final PersonRepository personRepository;
+	private final AnimalRepository animalRepository;
+	private final RoleRepository roleRepository;
+	private final SpeciesRepository speciesRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BestiolesApplication.class, args);
@@ -24,20 +26,17 @@ public class BestiolesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		System.out.println("person avant delete" + this.personRepository.findAll());
+		System.out.println(speciesRepository.findFirstByCommonNameEquals("Chien"));
 
-		System.out.println(this.animalRepository.findById(1));
+		System.out.println(speciesRepository.findAllByLatinNameContainsIgnoreCase("canis"));
 
-		System.out.println(this.roleRepository.findAll());
+		System.out.println(personRepository.findFirstByLastnameEqualsIgnoreCaseOrFirstnameEqualsIgnoreCase("LaMarque", "John"));
 
-		System.out.println(this.speciesRepository.findAll());
+		System.out.println(personRepository.findAllByAgeIsGreaterThanEqual(30));
 
-		personRepository.deleteById(1);
+		System.out.println(animalRepository.findAllBySpecies_CommonName("Chien"));
 
-		System.out.println("person après delete" + this.personRepository.findAll());
-
-		System.out.println(this.animalRepository.findAll());
-
+		System.out.println(animalRepository.findAllByColorIsIn(List.of("Noir", "Blanc")));
 	}
 
 	@Autowired

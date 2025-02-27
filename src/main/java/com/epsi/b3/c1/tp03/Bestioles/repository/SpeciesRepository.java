@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SpeciesRepository extends JpaRepository<Species, Integer> {
 
+    Species findFirstByCommonNameEquals(String commonName);
+
+    Species findAllByLatinNameContainsIgnoreCase(String latinName);
 }
